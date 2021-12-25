@@ -16,9 +16,9 @@ const todo = sequelize.define('Todo',{ // название модели, кот�
         allowNull: false,
     },
     title: Sequelize.STRING, // можем и так написать, не обозначая другие параметры
-    date: {
-        type: Sequelize.DATE, 
-        allowNull: false
-    }
+    // date: {
+    //     type: Sequelize.DATE, 
+    //     allowNull: false
+    // }
 }) 
 module.exports = todo
