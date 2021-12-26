@@ -11,6 +11,18 @@
         todos: []
       }
     },
+    created(){ // хук, который вызывается в процессе инициализации проекта
+      fetch('/api/todo',{
+        method: 'get'
+      })
+      // после этого обрабатываем промис:
+      .then(res=>res.json())
+      .then(todos=> {  // будем получать объект todos
+        // console.log(todos) // убидимся, что объект todos нам приходит
+        this.todos = todos
+      })
+      .catch(e=>console.log(e))
+    },
     methods: {
       addTodo() {
         const title = this.todoTitle.trim()

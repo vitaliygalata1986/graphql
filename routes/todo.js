@@ -3,9 +3,12 @@ const Todo = require('../models/todo')
 const router = Router() // создадим роутер через функцию Router
 
 // получение списка задач
-router.get('/', (req, res)=>{
+router.get('/', async(req, res)=>{
     try{
-
+       const todos = await Todo.findAll() // обратимся к оператору await, чтобы обработать промисы. Метод findAll - выберит все элементы, которые относятся к данной модели Todo
+        // данный метод верент нам промис и промис будет возвращать определенные данные, поэтому данные помещаем в массив todos
+        // задаем статус 200
+        res.status(200).json(todos) // в объекте json отдаем массив todos
     }catch(e){
         console.log(e)
         res.status(500).json({ // если есть ошибка, то будем отвечать
