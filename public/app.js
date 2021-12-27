@@ -51,8 +51,32 @@
         })
         .catch(e => console.log(e))
       },
+      completeTodo(id){
+        // console.log(id)
+        fetch('/api/todo/' + id,{ // здесь еще нужен id, который принимаем в этой функции
+          method:'put', // изменяет какие-либо элементы
+          headers: {'Content-Type' : 'application/json'}, // хедеры мы описываем в том случае, еси=ли мы передаем что-то на сервер
+          body: JSON.stringify({done: true})
+        })
+        .then(res=>res.json())
+        .then(({todo})=>{ // здесь будем получать объект todo
+          // на фронтенде сразу изменим этот todo:
+          const idx = this.todos.findIndex(t=>t.id===todo.id)
+          // после этого изменяем одно поле
+          this.todos[idx].updatedAt = todo.updatedAt
+        })
+        .catch(e=>console.log(e))
+      },  
       removeTodo(id) {
-        this.todos = this.todos.filter(t => t.id !== id)
+        fetch('/api/todo/' + id,{
+          method:'delete'
+        })
+        // нам ненужно парсить ответ, так как контента у нас не будет
+        .then(()=>{
+          this.todos = this.todos.filter(t => t.id !== id) // отфильтруем массив todos, где не будет того элемента
+        })
+        .catch(e=>console.log(e))
+    
       }
     },
     filters: {
