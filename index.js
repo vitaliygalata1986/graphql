@@ -32,6 +32,5 @@ async function start(){
         console.log(e)
     }
 }
-
 start()
 app.listen(PORT)
