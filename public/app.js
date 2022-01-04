@@ -1,5 +1,4 @@
 // const { json } = require("express/lib/response")
-
   new Vue({
     el: '#app',
 	//vuetify: new Vuetify(),
